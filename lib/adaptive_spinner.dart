@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 
 class AdaptiveSpinner extends StatelessWidget {
   final String withMessage;
-  final bool withCenteredContainer;
+  final double withCenteredContainer;
   final bool withCenteredText;
   final TextStyle withStyle;
   final double withSizedBox;
 
   AdaptiveSpinner({
     this.withMessage = '',
-    this.withCenteredContainer = false,
+    this.withCenteredContainer,
     this.withCenteredText = false,
     this.withStyle,
     this.withSizedBox,
@@ -53,12 +53,11 @@ class AdaptiveSpinner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    return withCenteredContainer
+    return withCenteredContainer != null
         ? Center(
             child: Container(
-              width: width / 5,
-              height: width / 5,
+              width: withCenteredContainer,
+              height: withCenteredContainer,
               color: Colors.black12,
               child: _buildSpinner(),
             ),

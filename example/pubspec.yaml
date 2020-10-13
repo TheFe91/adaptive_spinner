@@ -1,0 +1,13 @@
+name: adaptive_spinner_example
+description: Demonstrates how to use the AdaptiveSpinner
+
+version: 1.0.0+1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  adaptive_spinner:
+    path: ../
+
+flutter:
+  uses-material-design: true
