@@ -1,7 +1,6 @@
 name: adaptive_spinner
 description: A circular progress indicator, scalable and adaptive to multiple platforms
-version: 0.0.1
-author: Alessandro Defendenti
+version: 0.1.0
 homepage: https://github.com/TheFe91/adaptive_spinner
 
 environment:
