@@ -1,6 +1,6 @@
 name: adaptive_spinner
 description: A circular progress indicator, scalable and adaptive to multiple platforms
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/TheFe91/adaptive_spinner
 
 environment:
@@ -14,6 +14,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  effective_dart: ^1.2.4
 
 flutter:
   uses-material-design: true

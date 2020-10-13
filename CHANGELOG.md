@@ -1,3 +1,7 @@
-## [0.0.1] - TODO: Add release date.
+## [0.1.1] - Improved Dartdoc
 
-* TODO: Describe initial release.
+* Added Dartdoc to better explain all the arguments
+
+## [0.1.0] - TODO: Add release date.
+
+* Initial release

@@ -1,4 +1,8 @@
-# adaptive_spinner
+# Adaptive Spinner
+
+[![pub: 0.1.1](https://img.shields.io/pub/v/adaptive_spinner.svg)](https://pub.dev/packages/adaptive_spinner)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://pub.dev/packages/effective_dart)
 
 A circular progress indicator, scalable and adaptive to multiple platforms, 100% written in Dart.
 

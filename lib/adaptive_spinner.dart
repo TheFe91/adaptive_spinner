@@ -5,13 +5,22 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+///
+/// A circular progress indicator, scalable and adaptive to multiple platforms
+///
 class AdaptiveSpinner extends StatelessWidget {
+  /// Add a message to the spinner
   final String withMessage;
+  /// Add centered container
   final double withCenteredContainer;
+  /// Center the message text
   final bool withCenteredText;
+  /// Style the message text
   final TextStyle withStyle;
+  /// Size the Spinner
   final double withSizedBox;
 
+  /// Every argument is optional
   AdaptiveSpinner({
     this.withMessage = '',
     this.withCenteredContainer,
