@@ -11,12 +11,16 @@ import 'package:flutter/material.dart';
 class AdaptiveSpinner extends StatelessWidget {
   /// Add a message to the spinner
   final String withMessage;
+
   /// Add centered container
   final double withCenteredContainer;
+
   /// Center the message text
   final bool withCenteredText;
+
   /// Style the message text
   final TextStyle withStyle;
+
   /// Size the Spinner
   final double withSizedBox;
 
