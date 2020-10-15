@@ -36,13 +36,31 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               AdaptiveSpinner(),
               SizedBox(height: 40),
-              AdaptiveSpinner(withCenteredText: true, withMessage: 'With message and text'),
+              AdaptiveSpinner(
+                withCenteredText: true,
+                withMessage: 'With message and text',
+              ),
               SizedBox(height: 40),
-              AdaptiveSpinner(withCenteredContainer: 200, withMessage: 'With centered container\n(width: 200)', withCenteredText: true),
+              AdaptiveSpinner(
+                withCenteredContainer: 200,
+                withMessage: 'With centered container\n(width: 200)',
+                withCenteredText: true,
+              ),
               SizedBox(height: 40),
-              AdaptiveSpinner(withSizedBox: 100, withMessage: 'With SizedBox (width: 100)', withCenteredText: true),
+              AdaptiveSpinner(
+                withSizedBox: 100,
+                withMessage: 'With SizedBox (width: 100)',
+                withCenteredText: true,
+              ),
               SizedBox(height: 40),
-              AdaptiveSpinner(withStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold), withMessage: 'With message and styled text', withCenteredText: true),
+              AdaptiveSpinner(
+                withStyle: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+                withMessage: 'With message and styled text',
+                withCenteredText: true,
+              ),
             ],
           ),
         ),
