@@ -12,11 +12,11 @@ class AdaptiveSpinner extends StatelessWidget {
   /// Add a message to the spinner
   final String withMessage;
 
-  /// Add centered container
-  final double withCenteredContainer;
+  /// Center the container
+  final bool centeredContainer;
 
-  /// Center the message text
-  final bool withCenteredText;
+  /// Align the message text
+  final TextAlign withTextAlign;
 
   /// Style the message text
   final TextStyle withStyle;
@@ -24,13 +24,57 @@ class AdaptiveSpinner extends StatelessWidget {
   /// Size the Spinner
   final double withSizedBox;
 
+  /// Wrap the spinner in a customizable container
+  final bool withContainer;
+
+  /// Container's height
+  final double height;
+
+  /// /// Container's width
+  final double width;
+
+  /// Container's BoxDecoration
+  final Decoration decoration;
+
+  /// Container's padding
+  final EdgeInsetsGeometry padding;
+
+  /// Container's color
+  final Color color;
+
+  /// Container's alignment
+  final Alignment alignment;
+
+  /// Container's Foreground Decoration
+  final Decoration foregroundDecoration;
+
+  /// Container's clip behavior
+  final Clip clipBehavior;
+
+  /// Container's margins
+  final EdgeInsetsGeometry margin;
+
+  /// Container's transform matrix
+  final Matrix4 matrix;
+
   /// Every argument is optional
   AdaptiveSpinner({
-    this.withMessage = '',
-    this.withCenteredContainer,
-    this.withCenteredText = false,
+    this.withMessage,
+    this.withContainer = false,
+    this.centeredContainer = false,
+    this.withTextAlign,
     this.withStyle,
     this.withSizedBox,
+    this.height,
+    this.width,
+    this.decoration,
+    this.padding,
+    this.color,
+    this.alignment,
+    this.foregroundDecoration,
+    this.clipBehavior = Clip.none,
+    this.margin,
+    this.matrix,
   });
 
   Widget _buildSpinner() {
@@ -54,10 +98,10 @@ class AdaptiveSpinner extends StatelessWidget {
             : Platform.isAndroid
                 ? CircularProgressIndicator()
                 : CupertinoActivityIndicator(),
-        if (withMessage != '')
+        if (withMessage != null)
           Text(
             withMessage,
-            textAlign: withCenteredText ? TextAlign.center : TextAlign.left,
+            textAlign: withTextAlign ?? TextAlign.center,
             style: withStyle,
           )
       ],
@@ -66,15 +110,36 @@ class AdaptiveSpinner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return withCenteredContainer != null
-        ? Center(
-            child: Container(
-              width: withCenteredContainer,
-              height: withCenteredContainer,
-              color: Colors.black12,
-              child: _buildSpinner(),
-            ),
-          )
+    return withContainer
+        ? centeredContainer
+            ? Center(
+                child: Container(
+                  alignment: alignment,
+                  padding: padding,
+                  color: color,
+                  decoration: decoration,
+                  foregroundDecoration: foregroundDecoration,
+                  width: width,
+                  height: height,
+                  margin: margin,
+                  transform: matrix,
+                  clipBehavior: clipBehavior,
+                  child: _buildSpinner(),
+                ),
+              )
+            : Container(
+                alignment: alignment,
+                padding: padding,
+                color: color,
+                decoration: decoration,
+                foregroundDecoration: foregroundDecoration,
+                width: width,
+                height: height,
+                margin: margin,
+                transform: matrix,
+                clipBehavior: clipBehavior,
+                child: _buildSpinner(),
+              )
         : _buildSpinner();
   }
 }
