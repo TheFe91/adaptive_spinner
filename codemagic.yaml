@@ -1,7 +1,19 @@
 workflows:
   flutter-package:
-    name: Flutter or Dart Package
+    name: Adaptive Spinner
+    instance_type: mac_mini
+    max_build_duration: 10
     environment:
-      flutter: dev
+      flutter: stable
+      xcode: latest
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+        - ~/.gradle/caches
+        - ~/Library/Caches/CocoaPods
     scripts:
       - flutter packages pub get
+      - name: iOS build
+        script: flutter build ios
+      - name: Android build
+        script: flutter build android
