@@ -24,6 +24,9 @@ class AdaptiveSpinner extends StatelessWidget {
   /// Size the Spinner
   final double withSizedBox;
 
+  /// Radius of the Spinner
+  final double withRadius;
+
   /// Wrap the spinner in a customizable container
   final bool withContainer;
 
@@ -59,22 +62,23 @@ class AdaptiveSpinner extends StatelessWidget {
 
   /// Every argument is optional
   AdaptiveSpinner({
-    this.withMessage,
-    this.withContainer = false,
-    this.centeredContainer = false,
-    this.withTextAlign,
-    this.withStyle,
-    this.withSizedBox,
-    this.height,
-    this.width,
-    this.decoration,
-    this.padding,
-    this.color,
     this.alignment,
-    this.foregroundDecoration,
+    this.centeredContainer = false,
     this.clipBehavior = Clip.none,
+    this.color,
+    this.decoration,
+    this.foregroundDecoration,
+    this.height,
     this.margin,
     this.matrix,
+    this.padding,
+    this.width,
+    this.withContainer = false,
+    this.withMessage,
+    this.withRadius,
+    this.withSizedBox,
+    this.withStyle,
+    this.withTextAlign,
   });
 
   Widget _buildSpinner() {
@@ -87,17 +91,19 @@ class AdaptiveSpinner extends StatelessWidget {
                     width: withSizedBox,
                     height: withSizedBox,
                     child: CircularProgressIndicator(
-                      strokeWidth: 4 * withSizedBox / 35,
+                      strokeWidth: withRadius ?? null
                     ),
                   )
                 : SizedBox(
                     width: withSizedBox,
                     height: withSizedBox,
-                    child: CupertinoActivityIndicator(),
+                    child: CupertinoActivityIndicator(
+                      radius: withRadius ?? null,
+                    ),
                   )
             : Platform.isAndroid
-                ? CircularProgressIndicator()
-                : CupertinoActivityIndicator(),
+                ? CircularProgressIndicator(strokeWidth: withRadius ?? null)
+                : CupertinoActivityIndicator(radius: withRadius ?? null),
         if (withMessage != null)
           Text(
             withMessage,
