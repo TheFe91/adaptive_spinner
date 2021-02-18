@@ -91,19 +91,19 @@ class AdaptiveSpinner extends StatelessWidget {
                     width: withSizedBox,
                     height: withSizedBox,
                     child: CircularProgressIndicator(
-                      strokeWidth: withRadius ?? null
+                      strokeWidth: withRadius ?? 4
                     ),
                   )
                 : SizedBox(
                     width: withSizedBox,
                     height: withSizedBox,
                     child: CupertinoActivityIndicator(
-                      radius: withRadius ?? null,
+                      radius: withRadius ?? 10,
                     ),
                   )
             : Platform.isAndroid
-                ? CircularProgressIndicator(strokeWidth: withRadius ?? null)
-                : CupertinoActivityIndicator(radius: withRadius ?? null),
+                ? CircularProgressIndicator(strokeWidth: withRadius ?? 4)
+                : CupertinoActivityIndicator(radius: withRadius ?? 10),
         if (withMessage != null)
           Text(
             withMessage,
