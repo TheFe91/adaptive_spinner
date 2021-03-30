@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Divider(),
               AdaptiveSpinner(
                 withSizedBox: 100,
-                withMessage: 'With SizedBox (side: 100)',
+                withMessage: 'With SizedBox (size: 100)',
                 withTextAlign: TextAlign.center,
               ),
               Divider(),
@@ -63,6 +63,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 withMessage: 'With message and styled text',
                 withTextAlign: TextAlign.center,
+              ),
+              Divider(),
+              AdaptiveSpinner(
+                withStyle: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+                withRadius: 50,
+                withMessage: 'With radius (50)',
               ),
             ],
           ),

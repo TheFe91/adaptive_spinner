@@ -10,55 +10,55 @@ import 'package:flutter/material.dart';
 ///
 class AdaptiveSpinner extends StatelessWidget {
   /// Add a message to the spinner
-  final String withMessage;
+  final String? withMessage;
 
   /// Center the container
   final bool centeredContainer;
 
   /// Align the message text
-  final TextAlign withTextAlign;
+  final TextAlign? withTextAlign;
 
   /// Style the message text
-  final TextStyle withStyle;
+  final TextStyle? withStyle;
 
   /// Size the Spinner
-  final double withSizedBox;
+  final double? withSizedBox;
 
   /// Radius of the Spinner
-  final double withRadius;
+  final double? withRadius;
 
   /// Wrap the spinner in a customizable container
   final bool withContainer;
 
   /// Container's height
-  final double height;
+  final double? height;
 
   /// /// Container's width
-  final double width;
+  final double? width;
 
   /// Container's BoxDecoration
-  final Decoration decoration;
+  final Decoration? decoration;
 
   /// Container's padding
-  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry? padding;
 
   /// Container's color
-  final Color color;
+  final Color? color;
 
   /// Container's alignment
-  final Alignment alignment;
+  final Alignment? alignment;
 
   /// Container's Foreground Decoration
-  final Decoration foregroundDecoration;
+  final Decoration? foregroundDecoration;
 
   /// Container's clip behavior
   final Clip clipBehavior;
 
   /// Container's margins
-  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry? margin;
 
   /// Container's transform matrix
-  final Matrix4 matrix;
+  final Matrix4? matrix;
 
   /// Every argument is optional
   AdaptiveSpinner({
@@ -90,9 +90,7 @@ class AdaptiveSpinner extends StatelessWidget {
                 ? SizedBox(
                     width: withSizedBox,
                     height: withSizedBox,
-                    child: CircularProgressIndicator(
-                      strokeWidth: withRadius ?? 4
-                    ),
+                    child: CircularProgressIndicator(),
                   )
                 : SizedBox(
                     width: withSizedBox,
@@ -102,11 +100,15 @@ class AdaptiveSpinner extends StatelessWidget {
                     ),
                   )
             : Platform.isAndroid
-                ? CircularProgressIndicator(strokeWidth: withRadius ?? 4)
+                ? SizedBox(
+                    width: withRadius,
+                    height: withRadius,
+                    child: CircularProgressIndicator(),
+                  )
                 : CupertinoActivityIndicator(radius: withRadius ?? 10),
         if (withMessage != null)
           Text(
-            withMessage,
+            withMessage!,
             textAlign: withTextAlign ?? TextAlign.center,
             style: withStyle,
           )
