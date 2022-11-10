@@ -1,9 +1,9 @@
 library adaptive_spinner;
 
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+const radiusDefaultValue = 50.0;
 
 ///
 /// A circular progress indicator, scalable and adaptive to multiple platforms
@@ -12,8 +12,11 @@ class AdaptiveSpinner extends StatelessWidget {
   /// Add a message to the spinner
   final String? withMessage;
 
-  /// Center the container
-  final bool centeredContainer;
+  /// Customize the spinner's color
+  final Color withSpinnerColor;
+
+  // Customize the spinner's speed
+  final Duration withDuration;
 
   /// Align the message text
   final TextAlign? withTextAlign;
@@ -25,7 +28,7 @@ class AdaptiveSpinner extends StatelessWidget {
   final double? withSizedBox;
 
   /// Radius of the Spinner
-  final double? withRadius;
+  final double withRadius;
 
   /// Wrap the spinner in a customizable container
   final bool withContainer;
@@ -43,7 +46,7 @@ class AdaptiveSpinner extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
 
   /// Container's color
-  final Color? color;
+  final Color? withContainerColor;
 
   /// Container's alignment
   final Alignment? alignment;
@@ -61,11 +64,12 @@ class AdaptiveSpinner extends StatelessWidget {
   final Matrix4? matrix;
 
   /// Every argument is optional
-  AdaptiveSpinner({
+  const AdaptiveSpinner({
+    Key? key,
     this.alignment,
-    this.centeredContainer = false,
     this.clipBehavior = Clip.none,
-    this.color,
+    this.withContainerColor,
+    this.withSpinnerColor = Colors.black,
     this.decoration,
     this.foregroundDecoration,
     this.height,
@@ -75,37 +79,39 @@ class AdaptiveSpinner extends StatelessWidget {
     this.width,
     this.withContainer = false,
     this.withMessage,
-    this.withRadius,
+    this.withRadius = radiusDefaultValue,
     this.withSizedBox,
     this.withStyle,
     this.withTextAlign,
-  });
+    this.withDuration = const Duration(milliseconds: 1200),
+  }) : super(key: key);
 
-  Widget _buildSpinner() {
+  @override
+  Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        withSizedBox != null
-            ? Platform.isAndroid
-                ? SizedBox(
-                    width: withSizedBox,
-                    height: withSizedBox,
-                    child: CircularProgressIndicator(),
-                  )
-                : SizedBox(
-                    width: withSizedBox,
-                    height: withSizedBox,
-                    child: CupertinoActivityIndicator(
-                      radius: withRadius ?? 10,
-                    ),
-                  )
-            : Platform.isAndroid
-                ? SizedBox(
-                    width: withRadius,
-                    height: withRadius,
-                    child: CircularProgressIndicator(),
-                  )
-                : CupertinoActivityIndicator(radius: withRadius ?? 10),
+      children: [
+        SizedBox(
+          width: withSizedBox,
+          height: withSizedBox,
+          child: Container(
+            alignment: alignment,
+            padding: padding,
+            color: withContainerColor,
+            decoration: decoration,
+            foregroundDecoration: foregroundDecoration,
+            width: width,
+            height: height,
+            margin: margin,
+            transform: matrix,
+            clipBehavior: clipBehavior,
+            child: SpinKitFadingCircle(
+              size: withRadius,
+              color: withSpinnerColor,
+              duration: withDuration,
+            ),
+          ),
+        ),
         if (withMessage != null)
           Text(
             withMessage!,
@@ -114,40 +120,5 @@ class AdaptiveSpinner extends StatelessWidget {
           )
       ],
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return withContainer
-        ? centeredContainer
-            ? Center(
-                child: Container(
-                  alignment: alignment,
-                  padding: padding,
-                  color: color,
-                  decoration: decoration,
-                  foregroundDecoration: foregroundDecoration,
-                  width: width,
-                  height: height,
-                  margin: margin,
-                  transform: matrix,
-                  clipBehavior: clipBehavior,
-                  child: _buildSpinner(),
-                ),
-              )
-            : Container(
-                alignment: alignment,
-                padding: padding,
-                color: color,
-                decoration: decoration,
-                foregroundDecoration: foregroundDecoration,
-                width: width,
-                height: height,
-                margin: margin,
-                transform: matrix,
-                clipBehavior: clipBehavior,
-                child: _buildSpinner(),
-              )
-        : _buildSpinner();
   }
 }
